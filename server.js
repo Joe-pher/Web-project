@@ -4,7 +4,7 @@ const xmlparser = require('express-xml-bodyparser');
 const mongoose = require('mongoose');
 
 const hotelsRoute = require('./routes/hotels');
-
+const hotelRoute = require('./routes/hotel');
 // connect to MongoDB
 const configs = require('./configs');
 mongoose.connect(configs.database, { useNewUrlParser: true, useUnifiedTopology: true }, err => {
@@ -66,6 +66,7 @@ app.post('/hotel/search', (req, res) => {
     console.log(result0)
     //console.log("result0:", result0);
 })
+app.use('/hotel', hotelRoute);
 app.use('/hotels', hotelsRoute);
 app.get('/sub', (req, res) => res.send('Hello World!')) 
 
